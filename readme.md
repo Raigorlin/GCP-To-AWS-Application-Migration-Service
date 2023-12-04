@@ -15,18 +15,18 @@
 
 ## 部署流程
 
-1. 安裝 Agent (GCP Compute Engine) 
-2. 等待初步同步
-3. 啟動測試EC2
-4. 確認啟動規格是否符合需求
-5. 標記測試完畢
+1. [安裝 Agent (GCP Compute Engine)](#安裝-agent-gcp-compute-engine)
+2. [等待初步同步](#等待初步同步)
+3. [啟動測試EC2](#啟動測試ec2)
+4. [確認啟動規格是否符合需求](#確認啟動規格是否符合需求)
+5. [標記測試完畢](#標記測試完畢)
 6. 啟動正式切換EC2
 7. 停止遷移機器相關服務(請勿關機)
 8. 最終確認正式切換EC2
 9. 將MGN上的已經機器封存
 
 
-## 初步建置以及IAM權限設定
+### 初步建置以及IAM權限設定
 
 在第一次啟用這個服務時 AWS 會創建以下幾個預設 IAM 角色
 
@@ -68,7 +68,7 @@
 
 ![Alt text](/Screenshots/MGN-IAM-08.png)
 
-## VPC建置以及支援地區
+### VPC建置以及支援地區
 
 支援地區請參考這邊[https://docs.aws.amazon.com/mgn/latest/ug/supported-regions.html](https://docs.aws.amazon.com/mgn/latest/ug/supported-regions.html)
 
@@ -81,7 +81,7 @@
 ![Alt text](/Screenshots/MGN-VPC-03.png)
 
 
-## EC2 模板安全規則設定
+### EC2 模板安全規則設定
 
 ![Alt text](/Screenshots/MGN-EC2-01.png)
 
@@ -89,12 +89,12 @@
 
 ![Alt text](/Screenshots/MGN-EC2-03.png)
 
-## MGN Application Migration Service 設定
+### MGN Application Migration Service 設定
 
 ![Alt text](/Screenshots/MGN-01.png)
 
 
-### 複製服務的 EC2 模板
+#### 複製服務的 EC2 模板
 
 > `[Note]`只要對象Agent 還在運行 模板服務的EC2 會一直在運轉
 
@@ -104,40 +104,40 @@
 
 ![Alt text](/Screenshots/MGN-03.png)
 
-###  EC2建置模板 (Test/Cutover)
+####  EC2建置模板 (Test/Cutover)
 
 這模板是用來套用複製好的instance 
 
 ![Alt text](/Screenshots/MGN-lunch-01.png)
 
-###  EC2建置後續模板 (如果不需要可以忽略)
+####  EC2建置後續模板 (如果不需要可以忽略)
 
 用來安裝AWS SSM agent至EC2 機器上主要用來監控
 
 ![Alt text](/Screenshots/MGN-postlunch-01.png)
 
 
-## 部署流程
+### 部署流程
 
-### 安裝 Agent (GCP Compute Engine) 
+#### 安裝 Agent (GCP Compute Engine) 
 ---
 
 
-### 等待初步同步
+#### 等待初步同步
 ---
-### 啟動測試EC2
+#### 啟動測試EC2
 ---
-### 確認啟動規格是否符合需求
+#### 確認啟動規格是否符合需求
 ---
-### 標記測試完畢
+#### 標記測試完畢
 ---
-### 啟動正式切換EC2
+#### 啟動正式切換EC2
 ---
-### 停止遷移機器相關服務(請勿關機)
+#### 停止遷移機器相關服務(請勿關機)
 ---
-### 最終確認正式切換EC2
+#### 最終確認正式切換EC2
 ---
-### 將MGN上的已經機器封存
+#### 將MGN上的已經機器封存
 ---
 
 ## TroubleShooting
