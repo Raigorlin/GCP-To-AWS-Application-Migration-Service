@@ -42,7 +42,7 @@
 
 ### 初步建置以及IAM權限設定
 
-在第一次啟用這個服務時 AWS 會創建以下幾個預設 IAM 角色
+在第一次啟用這個服務時 AWS 會創建以下幾個預設 ***IAM*** 角色
 
 - AWSServiceRoleForApplicationMigrationService 
 - AWSApplicationMigrationReplicationServerRole
@@ -62,7 +62,7 @@
 - AWSApplicationMigrationServiceEc2InstancePolicy (在AWS不同資源區EC2的遷移以及安裝MGN Replication Agent)
 
 
-但這次我們這邊將套用 AWSApplicationMigrationAgentInstallationPolicy 用來安裝 Agent 
+但這次我們這邊將套用 ***AWSApplicationMigrationAgentInstallationPolicy*** 用來安裝 Agent 
 
 ![Alt text](/Screenshots/image.png)
 
@@ -135,19 +135,63 @@
 
 #### 安裝 Agent (GCP Compute Engine) 
 ---
+Windows 下載連結[https://docs.aws.amazon.com/zh_tw/mgn/latest/ug/windows-agent.html](https://docs.aws.amazon.com/zh_tw/mgn/latest/ug/windows-agent.html)
 
+|Region name | Region identity | Download Link
+| --- | --- | --- |
+|US East (Ohio) | us-east-2 | https://aws-application-migration-service-us-east-2.s3.us-east-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|US East (N. Virginia) | us-east-1 | https://aws-application-migration-service-us-east-1.s3.us-east-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|US West (N. California) | us-west-1 | https://aws-application-migration-service-us-west-1.s3.us-west-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|US West (Oregon) | us-west-2 | https://aws-application-migration-service-us-west-2.s3.us-west-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Africa (Cape Town) | af-south-1 | https://aws-application-migration-service-af-south-1.s3.af-south-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Hong Kong) | ap-east-1 | https://aws-application-migration-service-ap-east-1.s3.ap-east-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Jakarta) | ap-southeast-3 | https://aws-application-migration-service-ap-southeast-3.s3.ap-southeast-3.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Mumbai) | ap-south-1 | https://aws-application-migration-service-ap-south-1.s3.ap-south-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Osaka) | ap-northeast-3 | https://aws-application-migration-service-ap-northeast-3.s3.ap-northeast-3.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Seoul) | ap-northeast-2 | https://aws-application-migration-service-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Singapore) | ap-southeast-1 | https://aws-application-migration-service-ap-southeast-1.s3.ap-southeast-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Sydney) | ap-southeast-2 | https://aws-application-migration-service-ap-southeast-2.s3.ap-southeast-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Tokyo) | ap-northeast-1 | https://aws-application-migration-service-ap-northeast-1.s3.ap-northeast-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Canada (Central) | ca-central-1 | https://aws-application-migration-service-ca-central-1.s3.ca-central-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (Frankfurt) | eu-central-1 | https://aws-application-migration-service-eu-central-1.s3.eu-central-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (Ireland) | eu-west-1 | https://aws-application-migration-service-eu-west-1.s3.eu-west-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (London) | eu-west-2 | https://aws-application-migration-service-eu-west-2.s3.eu-west-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (Milan) | eu-south-1 | https://aws-application-migration-service-eu-south-1.s3.eu-south-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (Paris) | eu-west-3 | https://aws-application-migration-service-eu-west-3.s3.eu-west-3.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (Stockholm) | eu-north-1 | https://aws-application-migration-service-eu-north-1.s3.eu-north-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Middle East (Bahrain) | me-south-1 | https://aws-application-migration-service-me-south-1.s3.me-south-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|South America (São Paulo) | sa-east-1 | https://aws-application-migration-service-sa-east-1.s3.sa-east-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Middle East (UAE) | me-central-1 | https://aws-application-migration-service-me-central-1.s3.me-central-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Melbourne) | ap-southeast-4 | https://aws-application-migration-service-ap-southeast-4.s3.ap-southeast-4.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Asia Pacific (Hyderabad) | ap-south-2 | https://aws-application-migration-service-ap-south-2.s3.ap-south-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (Zurich) | eu-central-2 | https://aws-application-migration-service-eu-central-2.s3.eu-central-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Europe (Spain) | eu-south-2 | https://aws-application-migration-service-eu-south-2.s3.eu-south-2.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|Tel Aviv | il-central-1 | https://aws-application-migration-service-il-central-1.s3.il-central-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|AWS GovCloud (US-East) | us-gov-east-1 | https://aws-application-migration-service-us-gov-east-1.s3.us-gov-east-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+|AWS GovCloud (US-West) | us-gov-west-1 | https://aws-application-migration-service-us-gov-west-1.s3.us-gov-west-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe
+
+
+我們這次用日本的東京地區 [https://aws-application-migration-service-ap-northeast-1.s3.ap-northeast-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe](https://aws-application-migration-service-ap-northeast-1.s3.ap-northeast-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe)
+
+![Alt text](/Screenshots/deploy-install-agent-01.png)
+
+![Alt text](/Screenshots/deploy-install-agent.png)
+
+![Alt text](/Screenshots/Deploy-install-agent-02.png)
+
+如果有錯誤請看[troubleshoot](#如果你得到ssl-憑證錯誤)
 
 #### 等待初步同步
 ---
 
 遷移週期所顯示的狀態如下:
-- Not ready : MGN服務正在複製遷移機器資料至AWS 
-- Ready for testing : 複製完畢可以開始測試
-- Test in progress : 正在部署相關服務以及機器
-- Ready for cutover : 測試完畢可以部署正式要遷移的機器
-- Cutover in progress : 正在部署正式遷移機器
-- Cutover complete : 正式遷移完畢 (finalize Cutover Process)
-- Disconnected : AWS複製Agent 已斷線會有兩種情形網路不穩定或者部署完畢 
+- ***Not ready*** : MGN服務正在複製遷移機器資料至AWS 
+- ***Ready for testing*** : 複製完畢可以開始測試
+- ***Test in progress*** : 正在部署相關服務以及機器
+- ***Ready for cutover*** : 測試完畢可以部署正式要遷移的機器
+- ***Cutover in progress*** : 正在部署正式遷移機器
+- ***Cutover complete*** : 正式遷移完畢 (finalize Cutover Process)
+- ***Disconnected*** : AWS複製Agent 已斷線會有兩種情形網路不穩定或者部署完畢 
 
 #### 測試複製資料
 ---
@@ -217,7 +261,7 @@
 ![Alt text](/Screenshots/MGN-VPC-troubleshoot-04.png)
 ---
 
-如果你得到SSL 憑證錯誤
+### 如果你得到SSL 憑證錯誤
 
 ![Alt Text](/Screenshots/Windows-Migration-SSL_Trust-Failed.png)
 
