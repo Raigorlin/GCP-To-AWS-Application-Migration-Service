@@ -6,6 +6,21 @@
 
 ![Alt Text](/Screenshots/AWS-MGN-Network-Architecture-Modernization.png)
 
+## 最佳做法 (官方推薦)
+
+- 計畫
+    1. 將預計要遷移的機器上安裝 AWS複製Agent
+    2. 在遷移機器切換過程請勿重啟
+    3. 請勿按封存或切斷連線到AWS在EC2上運行遷移機器並且確認完畢為止
+- 測試
+    1. 遷移機器在測試步完成後驟官方建議至少等待兩周來確認是有潛在問題或連線問題
+    2. 請確保在切換遷移機器前做完整的測試
+- 成功導入遷移機器
+    1. 部署AWS複製Agent 到要遷移的機器上
+    2. 確保複製狀態為healthy 
+    3. 至少在正式切換前一個禮拜測試複製好的資料
+    4. 紀錄任何發現的錯誤，EC2部屬設定錯誤以及確認AWS官方的相關限制
+
 ## 前置作業
 
 - [初步建置以及IAM權限設定](#初步建置以及iam權限設定)
@@ -18,12 +33,11 @@
 1. [安裝 Agent (GCP Compute Engine)](#安裝-agent-gcp-compute-engine)
 2. [等待初步同步](#等待初步同步)
 3. [啟動測試EC2](#啟動測試ec2)
-4. [確認啟動規格是否符合需求](#確認啟動規格是否符合需求)
 5. [標記測試完畢](#標記測試完畢)
-6. 啟動正式切換EC2
+6. [啟動正式遷移機器至EC2](#啟動正式遷移機器至ec2)
 7. 停止遷移機器相關服務(請勿關機)
-8. 最終確認正式切換EC2
-9. 將MGN上的已經機器封存
+8. 最終確認遷移完畢後的機器狀態
+9. [將MGN上的已經遷移機器封存](#將mgn上的已經機器封存)
 
 
 ### 初步建置以及IAM權限設定
@@ -125,20 +139,66 @@
 
 #### 等待初步同步
 ---
-#### 啟動測試EC2
+
+遷移週期所顯示的狀態如下:
+- Not ready : MGN服務正在複製遷移機器資料至AWS 
+- Ready for testing : 複製完畢可以開始測試
+- Test in progress : 正在部署相關服務以及機器
+- Ready for cutover : 測試完畢可以部署正式要遷移的機器
+- Cutover in progress : 正在部署正式遷移機器
+- Cutover complete : 正式遷移完畢 (finalize Cutover Process)
+- Disconnected : AWS複製Agent 已斷線會有兩種情形網路不穩定或者部署完畢 
+
+#### 測試複製資料
 ---
-#### 確認啟動規格是否符合需求
+
+在啟動複製的資料前你會需要確認EC2 啟動規格以及相關設定
+
+> 如果你沒有選擇這個條件而是用自己的啟動模板可能要確認機器規格是否符合
+![Alt text](/Screenshots/Deploy-test-02.png)
+
+![Alt text](/Screenshots/Deploy-test-01.png)
+
+啟動完畢後要確認是否需要外部IP來確認RDP 連線
+
+![Alt text](/Screenshots/Deploy-test-03.png)
+
+如果需要確認最後更新資料的時間
+
+![Alt text](/Screenshots/deploy-lunch-history-02.png)
+
+![Alt text](/Screenshots/deploy-lunch-history-01.png)
+
 ---
 #### 標記測試完畢
 ---
-#### 啟動正式切換EC2
+
+![Alt text](/Screenshots/Deploy-test-ready-01.png)
+
 ---
-#### 停止遷移機器相關服務(請勿關機)
+
+#### 啟動正式遷移機器至EC2
 ---
-#### 最終確認正式切換EC2
+
+步驟與上面相同 
+
+`[Note]` 停止遷移機器上的所有服務請勿再進行寫入否則快照會無法同步但請勿關機AWS MGN需要確認AGENT 的存活狀態
+
+![Alt text](/Screenshots/Deploy-lunch-cutover-01.png)
+
+確認完畢後進行最終確認即可
+
+![Alt text](/Screenshots/Deploy-lunch-cutover-02.png)
+
 ---
 #### 將MGN上的已經機器封存
 ---
+
+![Alt text](/Screenshots/Deploy-archieve-01.png)
+
+可以在這邊到之前做的
+
+![Alt text](/Screenshots/Deploy-archieve-02.png)
 
 ## TroubleShooting
 
