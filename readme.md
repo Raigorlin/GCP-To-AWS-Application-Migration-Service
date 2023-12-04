@@ -4,7 +4,7 @@
 
 遷移架構如下：
 
-![Alt Text](/Screenshots/AWS-MGN-Network-Architecture-Modernization.png)
+![Alt Text](./Screenshots/AWS-MGN-Network-Architecture-Modernization.jpg)
 
 ## 最佳做法 (官方推薦)
 
@@ -64,23 +64,23 @@
 
 但這次我們這邊將套用 ***AWSApplicationMigrationAgentInstallationPolicy*** 用來安裝 Agent 
 
-![Alt text](/Screenshots/image.png)
+![Alt text](./Screenshots/image.png)
 
-![Alt text](/Screenshots/MGN-IAM-01.png)
+![Alt text](./Screenshots/MGN-IAM-01.png)
 
-![Alt text](/Screenshots/MGN-IAM-02.png)
+![Alt text](./Screenshots/MGN-IAM-02.png)
 
-![Alt text](/Screenshots/MGN-IAM-03.png)
+![Alt text](./Screenshots/MGN-IAM-03.png)
 
-![Alt text](/Screenshots/MGN-IAM-04.png)
+![Alt text](./Screenshots/MGN-IAM-04.png)
 
-![Alt text](/Screenshots/MGN-IAM-05.png)
+![Alt text](./Screenshots/MGN-IAM-05.png)
 
-![Alt text](/Screenshots/MGN-IAM-06.png)
+![Alt text](./Screenshots/MGN-IAM-06.png)
 
-![Alt text](/Screenshots/MGN-IAM-07.png)
+![Alt text](./Screenshots/MGN-IAM-07.png)
 
-![Alt text](/Screenshots/MGN-IAM-08.png)
+![Alt text](./Screenshots/MGN-IAM-08.png)
 
 ### VPC建置以及支援地區
 
@@ -88,47 +88,47 @@
 
 這次我們這邊用日本東京地區 (ap-southeast-1) 來做示範
 
-![Alt text](/Screenshots/MGN-VPC-01.png)
+![Alt text](./Screenshots/MGN-VPC-01.png)
 
-![Alt text](/Screenshots/MGN-VPC-02.png)
+![Alt text](./Screenshots/MGN-VPC-02.png)
 
-![Alt text](/Screenshots/MGN-VPC-03.png)
+![Alt text](./Screenshots/MGN-VPC-03.png)
 
 
 ### EC2 模板安全規則設定
 
-![Alt text](/Screenshots/MGN-EC2-01.png)
+![Alt text](./Screenshots/MGN-EC2-01.png)
 
-![Alt text](/Screenshots/MGN-EC2-02.png)
+![Alt text](./Screenshots/MGN-EC2-02.png)
 
-![Alt text](/Screenshots/MGN-EC2-03.png)
+![Alt text](./Screenshots/MGN-EC2-03.png)
 
 ### MGN Application Migration Service 設定
 
-![Alt text](/Screenshots/MGN-01.png)
+![Alt text](./Screenshots/MGN-01.png)
 
 
 #### 複製服務的 EC2 模板
 
 > `[Note]`只要對象Agent 還在運行 模板服務的EC2 會一直在運轉
 
-![Alt text](/Screenshots/MGN-02.png)
+![Alt text](./Screenshots/MGN-02.png)
 
 將網口改為先前建立好的VPC 子網段
 
-![Alt text](/Screenshots/MGN-03.png)
+![Alt text](./Screenshots/MGN-03.png)
 
 ####  EC2建置模板 (Test/Cutover)
 
 這模板是用來套用複製好的instance 
 
-![Alt text](/Screenshots/MGN-lunch-01.png)
+![Alt text](./Screenshots/MGN-lunch-01.png)
 
 ####  EC2建置後續模板 (如果不需要可以忽略)
 
 用來安裝AWS SSM agent至EC2 機器上主要用來監控
 
-![Alt text](/Screenshots/MGN-postlunch-01.png)
+![Alt text](./Screenshots/MGN-postlunch-01.png)
 
 
 ### 部署流程
@@ -173,11 +173,11 @@ Windows 下載連結[https://docs.aws.amazon.com/zh_tw/mgn/latest/ug/windows-age
 
 我們這次用日本的東京地區 [https://aws-application-migration-service-ap-northeast-1.s3.ap-northeast-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe](https://aws-application-migration-service-ap-northeast-1.s3.ap-northeast-1.amazonaws.com/latest/windows/AwsReplicationWindowsInstaller.exe)
 
-![Alt text](/Screenshots/deploy-install-agent-01.png)
+![Alt text](./Screenshots/deploy-install-agent-01.png)
 
-![Alt text](/Screenshots/deploy-install-agent.png)
+![Alt text](./Screenshots/deploy-install-agent.png)
 
-![Alt text](/Screenshots/Deploy-install-agent-02.png)
+![Alt text](./Screenshots/Deploy-install-agent-02.png)
 
 如果有錯誤請看[troubleshoot](#如果你得到ssl-憑證錯誤)
 
@@ -199,25 +199,25 @@ Windows 下載連結[https://docs.aws.amazon.com/zh_tw/mgn/latest/ug/windows-age
 在啟動複製的資料前你會需要確認EC2 啟動規格以及相關設定
 
 > 如果你沒有選擇這個條件而是用自己的啟動模板可能要確認機器規格是否符合
-![Alt text](/Screenshots/Deploy-test-02.png)
+![Alt text](./Screenshots/Deploy-test-02.png)
 
-![Alt text](/Screenshots/Deploy-test-01.png)
+![Alt text](./Screenshots/Deploy-test-01.png)
 
 啟動完畢後要確認是否需要外部IP來確認RDP 連線
 
-![Alt text](/Screenshots/Deploy-test-03.png)
+![Alt text](./Screenshots/Deploy-test-03.png)
 
 如果需要確認最後更新資料的時間
 
-![Alt text](/Screenshots/deploy-lunch-history-02.png)
+![Alt text](./Screenshots/deploy-lunch-history-02.png)
 
-![Alt text](/Screenshots/deploy-lunch-history-01.png)
+![Alt text](./Screenshots/deploy-lunch-history-01.png)
 
 ---
 #### 標記測試完畢
 ---
 
-![Alt text](/Screenshots/Deploy-test-ready-01.png)
+![Alt text](./Screenshots/Deploy-test-ready-01.png)
 
 ---
 
@@ -228,21 +228,21 @@ Windows 下載連結[https://docs.aws.amazon.com/zh_tw/mgn/latest/ug/windows-age
 
 `[Note]` 停止遷移機器上的所有服務請勿再進行寫入否則快照會無法同步但請勿關機AWS MGN需要確認AGENT 的存活狀態
 
-![Alt text](/Screenshots/Deploy-lunch-cutover-01.png)
+![Alt text](./Screenshots/Deploy-lunch-cutover-01.png)
 
 確認完畢後進行最終確認即可
 
-![Alt text](/Screenshots/Deploy-lunch-cutover-02.png)
+![Alt text](./Screenshots/Deploy-lunch-cutover-02.png)
 
 ---
 #### 將MGN上的已經機器封存
 ---
 
-![Alt text](/Screenshots/Deploy-archieve-01.png)
+![Alt text](./Screenshots/Deploy-archieve-01.png)
 
 可以在這邊到之前做的
 
-![Alt text](/Screenshots/Deploy-archieve-02.png)
+![Alt text](./Screenshots/Deploy-archieve-02.png)
 
 ## TroubleShooting
 
@@ -252,32 +252,32 @@ Windows 下載連結[https://docs.aws.amazon.com/zh_tw/mgn/latest/ug/windows-age
 2. 確保能夠訪問外部DNS以及出口開放 443/tcp 
 3. Stage 網段的路由可能設定錯誤
 
-![Alt text](/Screenshots/MGN-VPC-01.png)
+![Alt text](./Screenshots/MGN-VPC-01.png)
 
-![Alt text](/Screenshots/MGN-VPC-troubleshoot-02.png)
+![Alt text](./Screenshots/MGN-VPC-troubleshoot-02.png)
 
-![Alt text](/Screenshots/MGN-VPC-troubleshoot-03.png)
+![Alt text](./Screenshots/MGN-VPC-troubleshoot-03.png)
 
-![Alt text](/Screenshots/MGN-VPC-troubleshoot-04.png)
+![Alt text](./Screenshots/MGN-VPC-troubleshoot-04.png)
 ---
 
 ### 如果你得到SSL 憑證錯誤
 
-![Alt Text](/Screenshots/Windows-Migration-SSL_Trust-Failed.png)
+![Alt Text](./Screenshots/Windows-Migration-SSL_Trust-Failed.png)
 
 ### Steps 1
 ```powershell
 # Check if 443 port is normal for connection to AWS application migration Service
 Test-NetConnection mgn.{Region_ID}.amazonaws.com -Port 443
 ```
-![Alt Text](/Screenshots/Test-NetConnection-Result.png)
+![Alt Text](./Screenshots/Test-NetConnection-Result.png)
 
 ### Steps 2
 
 下載並且安裝在對應機器上
 
 [Amazon Trust CA Verification and Download](https://www.amazontrust.com/repository/#)
-![ALt Text](/Screenshots/Check-Browser-SSL.png)
+![ALt Text](./Screenshots/Check-Browser-SSL.png)
 
 ## Referencing
 
