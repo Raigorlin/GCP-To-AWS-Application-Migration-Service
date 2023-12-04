@@ -1,5 +1,9 @@
 # GCP (Compute Engine) 遷移 AWS (EC2)
 
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+
 首先這篇議題上, 我們會需要用到 AWS Application Migration Service (MGN) 來實現雲對雲的轉移
 
 遷移架構如下：
@@ -199,7 +203,10 @@ Windows 下載連結[https://docs.aws.amazon.com/zh_tw/mgn/latest/ug/windows-age
 在啟動複製的資料前你會需要確認EC2 啟動規格以及相關設定
 
 > 如果你沒有選擇這個條件而是用自己的啟動模板可能要確認機器規格是否符合
+
 ![Alt text](./Screenshots/Deploy-test-02.png)
+
+先前設定
 
 ![Alt text](./Screenshots/Deploy-test-01.png)
 
